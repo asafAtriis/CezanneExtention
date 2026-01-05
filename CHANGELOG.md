@@ -79,7 +79,13 @@
       "id": 13,
       "date": "2026-01-05",
       "task": "Update default date range",
-      "implementation": "Changed default Start Date to first day of current month and End Date to today. Added getFirstDayOfMonth() helper function."
+      "implementation": "Changed Start Date to always show first day of current month and End Date to today on each popup open. Dates are calculated fresh each time, not persisted to storage."
+    },
+    {
+      "id": 14,
+      "date": "2026-01-05",
+      "task": "Add remember dates option",
+      "implementation": "Added 'Remember last dates' checkbox. When unchecked (default), dates reset to first of month and today. When checked, last used dates are persisted and restored on next popup open."
     }
   ]
 }

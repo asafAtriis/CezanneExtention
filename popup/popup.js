@@ -19,16 +19,26 @@ async function loadSettings() {
     endDate: getTodayString(),
     startTime: '09:00',
     endTime: '17:00',
+    rememberDates: false,
     skipWeekends: true,
     weekendType: 'israel'
   };
 
   try {
     const stored = await chrome.storage.local.get(defaults);
-    document.getElementById('startDate').value = stored.startDate;
-    document.getElementById('endDate').value = stored.endDate;
+
+    // Use stored dates only if rememberDates is enabled, otherwise use defaults
+    if (stored.rememberDates && stored.startDate && stored.endDate) {
+      document.getElementById('startDate').value = stored.startDate;
+      document.getElementById('endDate').value = stored.endDate;
+    } else {
+      document.getElementById('startDate').value = getFirstDayOfMonth();
+      document.getElementById('endDate').value = getTodayString();
+    }
+
     document.getElementById('startTime').value = stored.startTime;
     document.getElementById('endTime').value = stored.endTime;
+    document.getElementById('rememberDates').checked = stored.rememberDates;
     document.getElementById('skipWeekends').checked = stored.skipWeekends;
     document.getElementById('weekendType').value = stored.weekendType;
   } catch (err) {
@@ -50,6 +60,7 @@ function getFormValues() {
     endDate: document.getElementById('endDate').value,
     startTime: document.getElementById('startTime').value,
     endTime: document.getElementById('endTime').value,
+    rememberDates: document.getElementById('rememberDates').checked,
     skipWeekends: document.getElementById('skipWeekends').checked,
     weekendType: document.getElementById('weekendType').value
   };

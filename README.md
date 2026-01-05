@@ -81,10 +81,11 @@ After code changes:
    - Click the extension icon in the toolbar
 
 3. **Configure Parameters**
-   - **Start Date**: First date to fill
-   - **End Date**: Last date to fill
+   - **Start Date**: First date to fill (default: first day of current month)
+   - **End Date**: Last date to fill (default: today)
    - **Daily Start Time**: Clock in time (default: 09:00)
    - **Daily End Time**: Clock out time (default: 17:00)
+   - **Remember last dates**: When checked, saves and restores your last used dates
    - **Skip Weekends**: Skip weekend days (checked by default)
    - **Weekend Days**: Israel (Fri-Sat) or International (Sat-Sun)
 
