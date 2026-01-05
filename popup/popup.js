@@ -15,7 +15,7 @@ function toggleWeekendType() {
 
 async function loadSettings() {
   const defaults = {
-    startDate: getTodayString(),
+    startDate: getFirstDayOfMonth(),
     endDate: getTodayString(),
     startTime: '09:00',
     endTime: '17:00',
@@ -115,4 +115,9 @@ function showStatus(message, type) {
 
 function getTodayString() {
   return new Date().toISOString().split('T')[0];
+}
+
+function getFirstDayOfMonth() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
 }

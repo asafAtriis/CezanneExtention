@@ -74,6 +74,12 @@
       "date": "2026-01-05",
       "task": "Remove break duration feature",
       "implementation": "Removed break duration field from popup UI, settings storage, and README documentation as it's not needed for the Clock In/Out automation."
+    },
+    {
+      "id": 13,
+      "date": "2026-01-05",
+      "task": "Update default date range",
+      "implementation": "Changed default Start Date to first day of current month and End Date to today. Added getFirstDayOfMonth() helper function."
     }
   ]
 }
