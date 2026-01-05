@@ -1,112 +1,113 @@
 # Cezanne HR Time Auto-Filler
 
-תוסף דפדפן למילוי אוטומטי של שעות עבודה במערכת Cezanne HR.
+Browser extension for automatic timesheet entry in Cezanne HR system.
 
-## תיאור
+## Description
 
-התוסף מאפשר מילוי אוטומטי של דיווחי שעות במערכת Cezanne HR. במקום למלא ידנית כל יום, התוסף עובר על טווח התאריכים שנבחר וממלא את השעות באופן אוטומטי.
+This extension automates time entry in Cezanne HR. Instead of manually filling each day, the extension iterates through the selected date range and fills in the hours automatically.
 
-### יכולות
+### Features
 
-- בחירת טווח תאריכים (מתאריך עד תאריך)
-- הגדרת שעת התחלה וסיום יומית
-- הגדרת משך הפסקה בדקות
-- דילוג אוטומטי על סופי שבוע
-- שמירת הגדרות אחרונות
-- טיפול בשגיאות ועצירה אוטומטית לאחר 3 כשלונות
+- Date range selection (start date to end date)
+- Daily start and end time configuration
+- Break duration setting (in minutes)
+- Automatic weekend skipping (Israel or International weekends)
+- Persistent settings storage
+- Error handling with automatic stop after 3 failures
 
-## מבנה הפרויקט
+## Project Structure
 
 ```
 CezanneExtention/
-├── manifest.json          # הגדרות התוסף (Manifest V3)
-├── README.md              # קובץ זה
-├── CHANGELOG.md           # יומן שינויים
+├── manifest.json          # Extension configuration (Manifest V3)
+├── README.md              # This file
+├── CHANGELOG.md           # Change log
 ├── popup/
-│   ├── popup.html         # ממשק המשתמש
-│   ├── popup.css          # עיצוב
-│   └── popup.js           # לוגיקת הטופס ותקשורת
+│   ├── popup.html         # User interface
+│   ├── popup.css          # Styling
+│   └── popup.js           # Form logic and messaging
 ├── content/
-│   └── content.js         # מנוע האוטומציה (DOM manipulation)
-└── icons/                 # אייקונים (אופציונלי)
+│   └── content.js         # Automation engine (DOM manipulation)
+└── icons/                 # Icons
 ```
 
-## התקנה לפיתוח (Development)
+## Development Installation
 
-### דרישות מקדימות
+### Prerequisites
 
-- דפדפן Chrome (גרסה 88 ומעלה) או Edge
-- גישה למערכת Cezanne HR
+- Chrome browser (version 88+) or Edge
+- Access to Cezanne HR system
 
-### שלבי התקנה
+### Installation Steps
 
-1. **פתיחת מנהל התוספים**
+1. **Open Extension Manager**
    ```
    Chrome: chrome://extensions
    Edge: edge://extensions
    ```
 
-2. **הפעלת מצב מפתח**
-   - סמן את "Developer mode" / "מצב מפתח" בפינה הימנית העליונה
+2. **Enable Developer Mode**
+   - Toggle "Developer mode" in the top right corner
 
-3. **טעינת התוסף**
-   - לחץ על "Load unpacked" / "טען ללא אריזה"
-   - בחר את תיקיית הפרויקט: `C:\Projects\CezanneExtention`
+3. **Load the Extension**
+   - Click "Load unpacked"
+   - Select the project folder: `C:\Projects\CezanneExtention`
 
-4. **אימות הטעינה**
-   - התוסף אמור להופיע ברשימה עם השם "Cezanne HR Time Auto-Filler"
-   - אייקון התוסף יופיע בסרגל הכלים
+4. **Verify Installation**
+   - The extension should appear in the list as "Cezanne HR Time Auto-Filler"
+   - The extension icon will appear in the toolbar
 
-### עדכון שינויים בזמן פיתוח
+### Updating During Development
 
-לאחר שינוי קוד:
+After code changes:
 
-1. חזור ל-`chrome://extensions`
-2. לחץ על כפתור הרענון (חץ מעגלי) בכרטיס התוסף
-3. רענן את דף Cezanne HR אם פתוח
+1. Go to `chrome://extensions`
+2. Click the refresh button (circular arrow) on the extension card
+3. Refresh the Cezanne HR page if open
 
-### צפייה בלוגים
+### Viewing Logs
 
-1. פתח את דף Cezanne HR
-2. לחץ `F12` לפתיחת Developer Tools
-3. עבור ללשונית "Console"
-4. סנן לפי `[CezanneAutoFill]` לראות את הודעות התוסף
+1. Open the Cezanne HR page
+2. Press `F12` to open Developer Tools
+3. Go to the "Console" tab
+4. Filter by `[CezanneAutoFill]` to see extension messages
 
-## שימוש
+## Usage
 
-1. **ניווט לדף הנוכחות**
-   - היכנס למערכת Cezanne HR
-   - נווט לדף דיווח השעות / Timesheet
+1. **Navigate to the Timesheet Page**
+   - Log in to Cezanne HR
+   - Navigate to the Clock In / Out page
 
-2. **פתיחת התוסף**
-   - לחץ על אייקון התוסף בסרגל הכלים
+2. **Open the Extension**
+   - Click the extension icon in the toolbar
 
-3. **הגדרת הפרמטרים**
-   - **Start Date**: תאריך התחלה
-   - **End Date**: תאריך סיום
-   - **Daily Start Time**: שעת כניסה (ברירת מחדל: 09:00)
-   - **Daily End Time**: שעת יציאה (ברירת מחדל: 17:00)
-   - **Break Duration**: משך הפסקה בדקות (ברירת מחדל: 60)
-   - **Skip Weekends**: דלג על שישי-שבת (מסומן כברירת מחדל)
+3. **Configure Parameters**
+   - **Start Date**: First date to fill
+   - **End Date**: Last date to fill
+   - **Daily Start Time**: Clock in time (default: 09:00)
+   - **Daily End Time**: Clock out time (default: 17:00)
+   - **Break Duration**: Break length in minutes (default: 60)
+   - **Skip Weekends**: Skip weekend days (checked by default)
+   - **Weekend Days**: Israel (Fri-Sat) or International (Sat-Sun)
 
-4. **הפעלה**
-   - לחץ על "Start Auto-Fill"
-   - המתן לסיום התהליך
+4. **Run**
+   - Click "Start Auto-Fill"
+   - Wait for the process to complete
 
-## התקנה לייצור (Production)
+## Production Deployment
 
-### יצירת קובץ ZIP לפרסום
+### Creating a ZIP for Publishing
 
-1. **הכנת הקבצים**
+1. **Prepare Files**
    ```bash
-   # ודא שאין קבצים מיותרים
-   # מחק קבצי .git, node_modules וכו' אם קיימים
+   # Ensure no unnecessary files exist
+   # Delete .git, node_modules, etc. if present
    ```
 
-2. **הוספת אייקונים** (מומלץ)
-   - צור אייקונים בגדלים: 16x16, 48x48, 128x128 פיקסלים
-   - שמור בתיקיית `icons/` בשמות: `icon16.png`, `icon48.png`, `icon128.png`
-   - עדכן את `manifest.json`:
+2. **Add Icons** (recommended)
+   - Create icons in sizes: 16x16, 48x48, 128x128 pixels
+   - Save in `icons/` folder as: `icon16.png`, `icon48.png`, `icon128.png`
+   - Update `manifest.json`:
    ```json
    "action": {
      "default_popup": "popup/popup.html",
@@ -123,75 +124,69 @@ CezanneExtention/
    }
    ```
 
-3. **יצירת ZIP**
+3. **Create ZIP**
    ```bash
    # Windows PowerShell
    Compress-Archive -Path * -DestinationPath ../cezanne-autofill.zip
    ```
 
-### פרסום ב-Chrome Web Store
+### Publishing to Chrome Web Store
 
-1. היכנס ל-[Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole)
-2. שלם את דמי הרישום החד-פעמיים ($5)
-3. לחץ "New Item" והעלה את קובץ ה-ZIP
-4. מלא את פרטי התוסף (תיאור, צילומי מסך, קטגוריה)
-5. שלח לבדיקה
+1. Go to [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole)
+2. Pay the one-time registration fee ($5)
+3. Click "New Item" and upload the ZIP file
+4. Fill in extension details (description, screenshots, category)
+5. Submit for review
 
-### התקנה פרטית (Enterprise)
+### Private Installation (Enterprise)
 
-להפצה פנים-ארגונית ללא Chrome Web Store:
+For internal distribution without Chrome Web Store:
 
-1. **אריזת התוסף**
-   - ב-`chrome://extensions` לחץ "Pack extension"
-   - בחר את תיקיית הפרויקט
-   - יווצרו קבצים: `.crx` (התוסף) ו-`.pem` (מפתח פרטי)
+1. **Pack the Extension**
+   - In `chrome://extensions` click "Pack extension"
+   - Select the project folder
+   - Files will be created: `.crx` (extension) and `.pem` (private key)
 
-2. **התקנה באמצעות Group Policy**
-   - העלה את קובץ ה-CRX לשרת פנימי
-   - הגדר את כתובת ההורדה ב-Group Policy
+2. **Install via Group Policy**
+   - Upload the CRX file to an internal server
+   - Configure the download URL in Group Policy
 
-## התאמה ל-DOM של Cezanne
+## Customizing DOM Selectors
 
-אם התוסף לא מזהה נכון את האלמנטים בדף, יש לעדכן את הסלקטורים בקובץ `content/content.js`:
+If the extension doesn't correctly identify page elements, update the selectors in `content/content.js`:
 
 ```javascript
-const SELECTORS = {
-  // עדכן את הסלקטורים בהתאם למבנה הדף
-  calendarGrid: '.calendar-grid, .timesheet-grid',
-  dayCell: '[data-date], .day-cell',
-  addButton: '.add-entry, .add-time',
-  modal: '.modal, .dialog, [role="dialog"]',
-  startTimeInput: 'input[name*="start"]',
-  endTimeInput: 'input[name*="end"]',
-  breakInput: 'input[name*="break"]',
-  saveButton: 'button[type="submit"], .btn-save',
-  // ...
-};
+// Key selectors used:
+// - Add New button: button.cz-primary-button with text "Add New"
+// - Clock In/Out sections: .cz-form-section-title containing "Clock In" / "Clock Out"
+// - Date input: input.mat-datepicker-input
+// - Time input: kendo-timepicker input.k-input-inner
+// - Save button: button.cz-primary-button with text "Save"
 ```
 
-### כיצד למצוא את הסלקטורים הנכונים
+### Finding the Correct Selectors
 
-1. פתח את דף Cezanne HR
-2. לחץ `F12` → לשונית "Elements"
-3. השתמש בכלי הבחירה (חץ בפינה השמאלית) ולחץ על האלמנט הרצוי
-4. העתק את ה-class או ה-id של האלמנט
-5. עדכן את `SELECTORS` בהתאם
+1. Open the Cezanne HR page
+2. Press `F12` → "Elements" tab
+3. Use the selection tool (arrow in the top left) and click on the desired element
+4. Copy the element's class or id
+5. Update the selectors in the code accordingly
 
-## פתרון בעיות
+## Troubleshooting
 
-| בעיה | פתרון |
-|------|-------|
-| התוסף לא נטען | ודא שכל הקבצים קיימים ושאין שגיאות ב-manifest.json |
-| "Please navigate to Cezanne HR first" | נווט לדף cezannehr.com או cezanneondemand.com |
-| "Failed to communicate with page" | רענן את הדף ונסה שוב |
-| "Could not find cell for [date]" | עדכן את SELECTORS.dayCell |
-| "Modal did not appear" | עדכן את SELECTORS.modal |
-| "Could not find save button" | עדכן את SELECTORS.saveButton |
+| Issue | Solution |
+|-------|----------|
+| Extension doesn't load | Ensure all files exist and no errors in manifest.json |
+| "Please navigate to Cezanne HR first" | Navigate to cezannehr.com or cezanneondemand.com |
+| "Failed to communicate with page" | Refresh the page and try again |
+| "Could not find Add New button" | Check if the button text/class has changed |
+| "Form did not appear" | Increase timeouts in CONFIG or check selectors |
+| "Could not find Save button" | Verify the Save button selector |
 
-## רישיון
+## License
 
-פרויקט פנימי - לשימוש אישי בלבד.
+Internal project - for personal use only.
 
-## תמיכה
+## Support
 
-לדיווח על באגים או בקשות לשיפור, פנה למפתח.
+For bug reports or feature requests, contact the developer.
