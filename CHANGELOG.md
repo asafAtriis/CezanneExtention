@@ -13,7 +13,7 @@
       "id": 2,
       "date": "2026-01-04",
       "task": "Develop Popup UI",
-      "implementation": "Built complete popup interface with date range selectors, time inputs (start/end), break duration field, and skip weekends toggle. Implemented local storage persistence for all settings and message passing to content script."
+      "implementation": "Built complete popup interface with date range selectors, time inputs (start/end), and skip weekends toggle. Implemented local storage persistence for all settings and message passing to content script."
     },
     {
       "id": 3,
@@ -30,8 +30,50 @@
     {
       "id": 5,
       "date": "2026-01-04",
-      "task": "Create Hebrew README documentation",
-      "implementation": "Created comprehensive README.md in Hebrew covering project overview, development setup, production deployment, DOM selector customization guide, and troubleshooting."
+      "task": "Create README documentation",
+      "implementation": "Created comprehensive README.md covering project overview, development setup, production deployment, DOM selector customization guide, and troubleshooting."
+    },
+    {
+      "id": 6,
+      "date": "2026-01-05",
+      "task": "Fix Cezanne HR DOM selectors",
+      "implementation": "Updated content script with correct selectors for Cezanne HR: Add New button, Clock In/Out sections, mat-datepicker-input for dates, kendo-timepicker for times, and Save button. Implemented proper flow: Add New -> Fill dates -> Fill times -> Save."
+    },
+    {
+      "id": 7,
+      "date": "2026-01-05",
+      "task": "Fix time input format and typing",
+      "implementation": "Changed time format from HH:mm to HH:mm:ss. Implemented character-by-character typing simulation using execCommand('insertText') to properly trigger Kendo UI timepicker validation."
+    },
+    {
+      "id": 8,
+      "date": "2026-01-05",
+      "task": "Fix form transition after save",
+      "implementation": "Added click-outside-to-close functionality after save to dismiss overlay/modal. Implemented detection of .cz-view-stack-overlay and fallback to main content click for proper form closure between iterations."
+    },
+    {
+      "id": 9,
+      "date": "2026-01-05",
+      "task": "Fix date range generation",
+      "implementation": "Rewrote date range function to be timezone-safe and properly include end date. Fixed iteration logic to handle month/year boundaries correctly."
+    },
+    {
+      "id": 10,
+      "date": "2026-01-05",
+      "task": "Add weekend type selection",
+      "implementation": "Added dropdown to select weekend type: Israel (Friday-Saturday) or International (Saturday-Sunday). Default set to Israel. Dropdown only visible when Skip Weekends is enabled."
+    },
+    {
+      "id": 11,
+      "date": "2026-01-05",
+      "task": "Add .gitignore and translate README",
+      "implementation": "Created .gitignore file excluding node_modules, build files, debug files (DOM.html), IDE files, and OS files. Translated README.md from Hebrew to English."
+    },
+    {
+      "id": 12,
+      "date": "2026-01-05",
+      "task": "Remove break duration feature",
+      "implementation": "Removed break duration field from popup UI, settings storage, and README documentation as it's not needed for the Clock In/Out automation."
     }
   ]
 }

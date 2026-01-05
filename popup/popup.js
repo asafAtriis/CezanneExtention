@@ -19,7 +19,6 @@ async function loadSettings() {
     endDate: getTodayString(),
     startTime: '09:00',
     endTime: '17:00',
-    breakDuration: 60,
     skipWeekends: true,
     weekendType: 'israel'
   };
@@ -30,7 +29,6 @@ async function loadSettings() {
     document.getElementById('endDate').value = stored.endDate;
     document.getElementById('startTime').value = stored.startTime;
     document.getElementById('endTime').value = stored.endTime;
-    document.getElementById('breakDuration').value = stored.breakDuration;
     document.getElementById('skipWeekends').checked = stored.skipWeekends;
     document.getElementById('weekendType').value = stored.weekendType;
   } catch (err) {
@@ -52,7 +50,6 @@ function getFormValues() {
     endDate: document.getElementById('endDate').value,
     startTime: document.getElementById('startTime').value,
     endTime: document.getElementById('endTime').value,
-    breakDuration: parseInt(document.getElementById('breakDuration').value, 10),
     skipWeekends: document.getElementById('skipWeekends').checked,
     weekendType: document.getElementById('weekendType').value
   };

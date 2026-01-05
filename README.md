@@ -10,7 +10,6 @@ This extension automates time entry in Cezanne HR. Instead of manually filling e
 
 - Date range selection (start date to end date)
 - Daily start and end time configuration
-- Break duration setting (in minutes)
 - Automatic weekend skipping (Israel or International weekends)
 - Persistent settings storage
 - Error handling with automatic stop after 3 failures
@@ -86,7 +85,6 @@ After code changes:
    - **End Date**: Last date to fill
    - **Daily Start Time**: Clock in time (default: 09:00)
    - **Daily End Time**: Clock out time (default: 17:00)
-   - **Break Duration**: Break length in minutes (default: 60)
    - **Skip Weekends**: Skip weekend days (checked by default)
    - **Weekend Days**: Israel (Fri-Sat) or International (Sat-Sun)
 
@@ -104,27 +102,7 @@ After code changes:
    # Delete .git, node_modules, etc. if present
    ```
 
-2. **Add Icons** (recommended)
-   - Create icons in sizes: 16x16, 48x48, 128x128 pixels
-   - Save in `icons/` folder as: `icon16.png`, `icon48.png`, `icon128.png`
-   - Update `manifest.json`:
-   ```json
-   "action": {
-     "default_popup": "popup/popup.html",
-     "default_icon": {
-       "16": "icons/icon16.png",
-       "48": "icons/icon48.png",
-       "128": "icons/icon128.png"
-     }
-   },
-   "icons": {
-     "16": "icons/icon16.png",
-     "48": "icons/icon48.png",
-     "128": "icons/icon128.png"
-   }
-   ```
-
-3. **Create ZIP**
+2. **Create ZIP**
    ```bash
    # Windows PowerShell
    Compress-Archive -Path * -DestinationPath ../cezanne-autofill.zip
