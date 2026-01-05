@@ -1,0 +1,124 @@
+{
+    "project": {
+        "name": "Cezanne HR Time Auto-Filler",
+        "description": "Browser extension (Chrome/Firefox) to automate timesheet entry on Cezanne HR via DOM manipulation."
+    },
+    "architecture": {
+        "stack": [
+            "JavaScript (ES6+)",
+            "HTML5",
+            "CSS3",
+            "WebExtensions API (Manifest V3)"
+        ],
+        "components": [
+            {
+                "name": "Popup UI",
+                "responsibility": "User interface for setting date range, daily hours (start/end), and break duration. Triggers the automation.",
+                "interfaces": [
+                    "chrome.storage.local",
+                    "chrome.tabs.sendMessage"
+                ]
+            },
+            {
+                "name": "Content Script",
+                "responsibility": "Executes the automation logic on the active Cezanne tab. Navigates the calendar, opens modals, fills inputs using trusted events, and submits forms.",
+                "interfaces": [
+                    "DOM Manipulation (Selectors, Events)",
+                    "MutationObserver"
+                ]
+            }
+        ]
+    },
+    "tasks": [
+        {
+            "id": 1,
+            "title": "Project Scaffold & Manifest",
+            "description": "Initialize the directory structure, icons, and manifest.json (V3) with necessary permissions (activeTab, storage, scripting).",
+            "acceptance_criteria": [
+                "Extension loads in Chrome Developer Mode",
+                "Popup opens on click"
+            ],
+            "dependencies": [],
+            "estimated_scope": "small"
+        },
+        {
+            "id": 2,
+            "title": "Develop Popup UI",
+            "description": "Create the settings form (Start Date, End Date, Daily Start Time, Daily End Time, Break Duration). Save 'last used' values to local storage.",
+            "acceptance_criteria": [
+                "User can select dates and times",
+                "Settings persist after closing popup",
+                "'Start' button sends message to content script"
+            ],
+            "dependencies": [
+                1
+            ],
+            "estimated_scope": "medium"
+        },
+        {
+            "id": 3,
+            "title": "Implement Content Script Core Logic",
+            "description": "Develop the script to identify the calendar grid, handle 'Add' clicks, wait for Modal appearance, fill inputs using Trusted Event simulation (dispatchEvent), and save.",
+            "acceptance_criteria": [
+                "Script correctly identifies day cells",
+                "Script identifies existing entries to avoid duplicates",
+                "Script can populate Start/End time inputs in the modal",
+                "Script successfully submits the form"
+            ],
+            "dependencies": [
+                2
+            ],
+            "estimated_scope": "large"
+        },
+        {
+            "id": 4,
+            "title": "Implement Date Iteration & Error Handling",
+            "description": "Logic to loop through the selected date range. Handle loading states between days. Skip weekends if toggled. Error reporting to Popup.",
+            "acceptance_criteria": [
+                "Can process multiple days in sequence",
+                "Handles loading spinners/network delays via MutationObserver",
+                "Stops on critical error"
+            ],
+            "dependencies": [
+                3
+            ],
+            "estimated_scope": "medium"
+        }
+    ],
+    "decisions": [
+        {
+            "question": "How to handle DOM loading/async updates?",
+            "options": [
+                {
+                    "option": "Hardcoded Timeouts (e.g. sleep(1000))",
+                    "recommendation": false,
+                    "reasoning": "Flaky and slow."
+                },
+                {
+                    "option": "MutationObserver & Polling",
+                    "recommendation": true,
+                    "reasoning": "More robust for SPAs where elements appear dynamically."
+                }
+            ]
+        },
+        {
+            "question": "Input Value Injection Strategy",
+            "options": [
+                {
+                    "option": "Direct value assignment (.value = x)",
+                    "recommendation": false,
+                    "reasoning": "Often ignored by React/Angular state management."
+                },
+                {
+                    "option": "Dispatch 'input'/'change' events",
+                    "recommendation": true,
+                    "reasoning": "Necessary to trigger internal framework validation and state updates."
+                }
+            ]
+        }
+    ],
+    "open_questions": [
+        "Does Cezanne HR use IFrames? (If so, manifest needs 'all_frames': true)",
+        "Are there specific validation rules that might block submission (e.g. mandatory project codes)?"
+    ]
+}

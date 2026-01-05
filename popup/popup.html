@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cezanne Time Filler</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Time Auto-Filler</h1>
+
+    <div class="form-group">
+      <label for="startDate">Start Date</label>
+      <input type="date" id="startDate" required>
+    </div>
+
+    <div class="form-group">
+      <label for="endDate">End Date</label>
+      <input type="date" id="endDate" required>
+    </div>
+
+    <div class="form-group">
+      <label for="startTime">Daily Start Time</label>
+      <input type="time" id="startTime" value="09:00" required>
+    </div>
+
+    <div class="form-group">
+      <label for="endTime">Daily End Time</label>
+      <input type="time" id="endTime" value="17:00" required>
+    </div>
+
+    <div class="form-group">
+      <label for="breakDuration">Break Duration (minutes)</label>
+      <input type="number" id="breakDuration" value="60" min="0" max="120" required>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="skipWeekends" checked>
+      <label for="skipWeekends">Skip Weekends</label>
+    </div>
+
+    <div class="form-group" id="weekendTypeGroup">
+      <label for="weekendType">Weekend Days</label>
+      <select id="weekendType">
+        <option value="israel">Friday - Saturday (Israel)</option>
+        <option value="international">Saturday - Sunday (International)</option>
+      </select>
+    </div>
+
+    <button id="startBtn" class="btn-primary">Start Auto-Fill</button>
+
+    <div id="status" class="status"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
